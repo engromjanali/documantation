@@ -1,0 +1,58 @@
+git --version
+
+Set your name and email (must match your GitHub email):
+
+git config --global user.name "Your Name"
+git config --global user.email "your_email@gmail.com"
+
+
+Check config:
+
+git config --list
+
+cd your_project_folder
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin git@github.com:USERNAME/REPO_NAME.git
+git remote -v
+git branch -M main
+git push -u origin main
+
+
+========= all done, now save pass to egnore every time pass password ===============
+we will need to a personal access token
+at first generate a parsonal access token
+
+
+1️⃣ Remove old GitHub credentials (VERY IMPORTANT)
+rm -f ~/.git-credentials
+rm -f ~/.config/git/credentials
+
+
+2️⃣ Set credential helper (GLOBAL)
+Stores token permanently in plain text:
+git config --global credential.helper store
+
+
+Verify:
+git config --global --get credential.helper
+
+
+You should see:
+store
+
+
+3️⃣ Ensure remote is HTTPS (NOT SSH)
+
+Go to your repo folder:
+
+git remote -v
+
+git push -u origin main
+Username: your_github_username
+Password: PASTE_YOUR_PERSONAL_ACCESS_TOKEN
+⚠️ Paste the PAT, not GitHub password
+⚠️ Terminal won’t show anything while pasting — that’s normal
+
+If push is successful, Git will now save it globally 🎉
