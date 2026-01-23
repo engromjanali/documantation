@@ -1,0 +1,6 @@
+Enable app check,
+Now run your app after set  " await FirebaseAppCheck.instance.activate(androidProvider: kReleaseMode ? AndroidProvider.playIntegrity : AndroidProvider.debug,);"
+You will get a key in debug-console add the key in app-check debug-token,
+If you run your app, firebase monitor your app request and block un authorized request.
+If your app are resisted. In release mode you can't see any issue.
+May it's required play store install.

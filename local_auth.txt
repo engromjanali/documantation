@@ -1,0 +1,12 @@
+// android/app/src/main/kotlin/com/engromjanali/securenote/MainActivity.kt
+
+package com.engromjanali.securenote
+import io.flutter.embedding.android.FlutterFragmentActivity
+class MainActivity : FlutterFragmentActivity()
+
+<!-- local auth reference | in AndroidManifist.xml-->
+<uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+
+// for iOS
+<key>NSFaceIDUsageDescription</key>
+<string>Why is my app authenticating using face id?</string>

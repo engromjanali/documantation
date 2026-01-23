@@ -1,0 +1,117 @@
+# unstage => stage => server
+
+
+
+| Command                         | Git থেকে   | Computer থেকে  |
+| ------------------------------- | --------- | ------------- |
+| `git rm lib/main.dart`          | ❌ Remove | ❌ Delete     |
+| `git rm --cached lib/main.dart` | ❌ Remove | ✅ Keep       |
+
+
+
+# ================== gitignore or secret =======================
+ It's keep untrecked our sensitive files, for example we can specify a example or template file,
+ Demo given below,
+
+
+File :
+  secrets.env.dart => const String apiKey  = "932874n39eur2903u8rfnb2093";
+  secrets.example.dart => const String apiKey  = "paste-you-api-key-here";
+
+.Gitignore:
+  *.env.*
+
+
+# ================== commit message =======================
+ - feat → new feature
+ - fix → bug fix 
+ - refactor → code improvement
+ - docs → documentation
+ - chore → tooling / config
+ - test → tests
+
+
+# ================== rebase =========================
+
+-> solve CONFLICT and retry for rebase,
+git add file.dart
+git rebase --continue
+-> if you want to cancel rebase
+git rebase --abort
+
+# ================= branch =========================
+
+Create and move -> git checkout -b new_branch_name
+Move to branch -> git switch branch-name || git checkout branch-name
+Rename current branch ->  git branch -m future/digital_item 
+Rename a spacific branch ->  git branch -m temp future/digital_item
+Delete branch -> git branch -d branch_name
+
+# =========================== pull/fetch ===============================
+
+Git pull : pull only take the current branch data.
+Git fetch: take each branch data dose not merge it's self.
+
+# ========================== cherry-pick ==============================
+
+Merge only one commit not whole branch: Git cherry-pick commit-id
+Ex: git cherry-pick a1b2c3d
+
+# ========================== reset ==============================
+
+Undo last commit but keep working thee unchanged :  git reset --soft <a1b2c3d>
+Ex: git reset --soft HEAD~1
+-
+Remove last commit, working thee also :  git reset --hard <commit>
+Ex: git reset --hard HEAD~1
+
+# ========================= rebase & merge =====================
+
+Rebase: clear all history/commit take only one commit 
+Merge: take all history/commit 
+
+# ========================= Dif =====================
+
+Git def A B
+-> compare two branch
+
+# ================ stash ==================
+
+clear all untracked file: Git stash
+
+# =============== rebase ================
+
+main:    A → B → C
+feature:        X → Y → Z
+-
+Git removes your commits temporarily (X, Y, Z)
+Git moves your branch pointer to the target base (main/C)
+Git re-applies your commits one by one on top of it
+-
+git checkout feature
+git rebase main
+-
+Continue rebase
+git rebase --continue
+-
+If stuck, cancel rebase
+git rebase --abort
+-
+That’s why commit hashes change after rebase.
+now, X' will be start from C
+-
+main:    A → B → C
+feature:          X' → Y' → Z'
+
+
+# ================== Case: ==============
+
+we create a sub branch named 'feature' to implement a future like auth. I have made 100 commit now I want to marge it in main, but do't want the history I want to marge with a commit named "FEAT: auth"
+-
+--squash = merges changes without creating merge commit, ready for a single commit
+-> Use git merge --squash feature 
+-> then git commit -m "Feat: auth"
+take all changes from future branch except history 
+Now make a commit it's look professional 
+
+#

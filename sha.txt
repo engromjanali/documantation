@@ -1,0 +1,30 @@
+How can I generate a release SHA key add in project? Log are given below.
+
+mdromjanali@MDs-MacBook-Air your_info % keytool -genkey -v -keystore ~/secure_note.jks -alias engromjanali -keyalg RSA -keysize 2048 -validity 10000
+Enter keystore password: 010204
+Re-enter new password: 010204
+What is your first and last name?
+  [Unknown]:  romjan ali          
+What is the name of your organizational unit?
+  [Unknown]:  
+What is the name of your organization?
+  [Unknown]:  
+What is the name of your City or Locality?
+  [Unknown]:  
+What is the name of your State or Province?
+  [Unknown]:  
+What is the two-letter country code for this unit?
+  [Unknown]:  
+Is CN=romjan ali, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown correct?
+  [no]:  y
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 10,000 days
+        for: CN=romjan ali, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown
+[Storing /Users/mdromjanali/secure_note.jks]
+
+// the file at first we have to keep in "android/app/"
+// Now we have to add/modify some code in "android/app/build.gradle.kts"
+
+// after set the key is in poject you will see the SHA by these command.
+mdromjanali@MDs-MacBook-Air secure_note % cd android 
+mdromjanali@MDs-MacBook-Air android % ./gradlew signingReport
