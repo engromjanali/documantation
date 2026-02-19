@@ -1,0 +1,6 @@
+Normally we can use getx for localization,
+But if we don't want to use getx we Can use easy-localization.
+
+And most recommended 5 star is Flutter ARB (intl) for localization.
+We can use "title".tr 
+#-> create a extension for (.tr) the as you wish we can use getx/other localization pack 

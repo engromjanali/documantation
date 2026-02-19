@@ -65,6 +65,9 @@ Ex: git reset --soft HEAD~1
 Remove last commit, working thee also :  git reset --hard <commit>
 Ex: git reset --hard HEAD~1
 
+I have hard rest form git but, So still have in GitHub how can I remove the commit from GitHub also: 
+git push origin main --force
+
 # ========================= rebase & merge =====================
 
 Rebase: clear all history/commit take only one commit 

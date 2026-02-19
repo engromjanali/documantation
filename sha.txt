@@ -1,30 +1,63 @@
 How can I generate a release SHA key add in project? Log are given below.
 
-mdromjanali@MDs-MacBook-Air your_info % keytool -genkey -v -keystore ~/secure_note.jks -alias engromjanali -keyalg RSA -keysize 2048 -validity 10000
-Enter keystore password: 010204
-Re-enter new password: 010204
+mdromjanali@MDs-MacBook-Air secure_note % keytool -genkey -v -keystore secure_note.jks -keyalg RSA -keysize 2048 -validity 10000 -alias engromjanali
+Enter keystore password:  0xxxx4
+Re-enter new password: 0xxxx4
 What is your first and last name?
-  [Unknown]:  romjan ali          
+  [Unknown]:  md romjan ali                     
 What is the name of your organizational unit?
-  [Unknown]:  
+  [Unknown]:             
 What is the name of your organization?
   [Unknown]:  
 What is the name of your City or Locality?
-  [Unknown]:  
+  [Unknown]:  cumilla
 What is the name of your State or Province?
   [Unknown]:  
 What is the two-letter country code for this unit?
-  [Unknown]:  
-Is CN=romjan ali, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown correct?
+  [Unknown]:  88
+Is CN=md romjan ali, OU=Unknown, O=Unknown, L=cumilla, ST=Unknown, C=88 correct?
   [no]:  y
 
 Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 10,000 days
-        for: CN=romjan ali, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown
-[Storing /Users/mdromjanali/secure_note.jks]
+        for: CN=md romjan ali, OU=Unknown, O=Unknown, L=cumilla, ST=Unknown, C=88
+[Storing secure_note.jks]
+mdromjanali@MDs-MacBook-Air secure_note % 
 
-// the file at first we have to keep in "android/app/"
-// Now we have to add/modify some code in "android/app/build.gradle.kts"
 
-// after set the key is in poject you will see the SHA by these command.
+Now keep the xyz.jks file in "/app" folder
+
+
+
+-> step 2
+
+Create a file named keystore.properties
+ 
+Now peast it in this file : 
+
+   storePassword=010204
+   keyPassword=010204
+   keyAlias=engromjanali
+   storeFile=secure_note.jks
+
+
+-> Step 3
+
+Add given line in android section in build.gradle.kts:
+
+    // Update signingConfigs
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+        }
+    }
+
+
+
+-> step 4:
+
+after set the key is in poject you will see the SHA by these command.
 mdromjanali@MDs-MacBook-Air secure_note % cd android 
 mdromjanali@MDs-MacBook-Air android % ./gradlew signingReport
