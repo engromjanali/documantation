@@ -1,36 +1,22 @@
-You can keep a one global account by developer classic key, 
-Note: if already you have a git setup now you want to change it to new you have to remove first account’s info from keystore/pass
 
-And also can create a group of accounts by ssh (ac-1, ac-2. ETC) then you can use them according to your need, 
 
-The setup steps are given below, 
-How to manage multiple github account in mac os:-
+
+
+How to manage multiple github account in mac os,
 
 
 Step 1: Set up SSH keys
 Open Terminal on your Mac. You can find it by going to “Applications” > “Utilities” > “Terminal”.
-
-Step 2: To check if you already have SSH keys, type the following command and press Enter: 
-
+Step 2: To check if you already have SSH keys, type the following command and press Enter:
 ls -al ~/.ssh
-
-Note: preferred remove all ssh key if it’s not important,
-
-3. generate a new SSH key by running this command and pressing Enter:
-
+3. generate a new SSH key by running this command and pressing Enter:.
 ssh-keygen -t rsa -C "your_email@example.com"
-
 Note: Replace "your_email@example.com" with the email address associated with your GitHub account.
-
 4. You'll be prompted to choose a file path to save the SSH key. Press Enter to accept the default path (or change the file name `/Users/{your_username}/.ssh/custom_name`).
-
 5. You'll also be asked to enter a passphrase. It's optional but recommended for added security.
-
 6. Repeat steps 2-5 if you want to set up SSH keys for your other GitHub accounts.
-
 Step 2: Add SSH keys to GitHub
 Copy the SSH key to your clipboard by running this command and pressing Enter:
-
 pbcopy < ~/.ssh/id_rsa.pub
 Go to the GitHub website (https://github.com) and log in to the account for which you want to add the SSH key.
 Click on your profile picture in the top-right corner and select “Settings” from the dropdown menu.
@@ -59,7 +45,6 @@ Host github.com-professional
  User git
  IdentityFile ~/.ssh/other_key
 Note: Replace personal and professional with unique identifiers for your GitHub accounts. Replace ~/.ssh/other_key with the file path to the SSH key of the respective account.
-
 5. Save and close the configuration file.
 Save key identities in local machine
 First, we have to remove any existing identities by running the following command.
@@ -70,44 +55,34 @@ ssh-add -l
 Now you have to authenticate the keys with GitHub by running following commands.
 ssh -T github.com-personal
 ssh -T github.com-professional
-
 Now, we’re almost done!
-
 Step 4:
 For brand new Repository
 Open Terminal on your Mac.
 Change to the directory where you want to clone the repository. For example:
-
 cd Documents/Projects
-
 3. Clone a repository using the following command and press Enter:
-
 git clone git@github.com-personal:username/repo.git
-
 Note: Replace personal with the identifier for the GitHub account you want to use, username with your GitHub username, and repo with the name of the repository.
-
 4. Repeat Step 4 for cloning repositories using your other GitHub accounts.
 For Existing Repository
 First check remote of existing
 git remote -v
-
 2. Most probably it will list you remote in format
 git@github.com:{repo-owner-name}/{repo-name}.git
-
 3. We have to modify this remote origin to the following format
 git remote set-url origin git@github.com-{identifier}/{repo-owner-name}/{repo-name}.git
 Note: It should look like this git@github.com-personal:username/repo.git
-
 Step 5: Configure local Git settings
 Open Terminal on your Mac.
 Change to the directory of the cloned repository. For example:
 cd Documents/Projects/repo
 3. Configure your local Git settings by running the following commands and pressing Enter after each one:
+
 git config user.name "Your Name"
 git config user.email "your_email@example.com"
 Note: Replace "Your Name" and "your_email@example.com" with your desired name and email for the current GitHub account.
 4. Repeat steps 2–3 for each cloned repository and GitHub account.
-
 Step 6: Switch between GitHub accounts
 Open Terminal on your Mac.
 Change to the directory of the cloned repository for the account you want to use.
@@ -121,4 +96,3 @@ git config user.email "your_email@example.com"
 That’s all now this git repo use the local config.
 
 Thanks.
-
